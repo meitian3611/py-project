@@ -21,6 +21,10 @@ with open("resources/text_write.txt", "w", encoding="utf-8") as f:
     f.write("举头望明月，\n")
     f.write("低头思故乡。\n")
 
+# 追加
+with open("resources/text_write.txt", "a", encoding="utf-8") as f:
+    f.write("--------追加的文本----------")
+
 """
 json模块的使用
     json.dump()  序列化操作 把python的字典对象输出成 json格式进行写入存储
