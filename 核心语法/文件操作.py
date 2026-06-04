@@ -5,6 +5,7 @@
     上下文管理器 核心作用就是确保资源总是被正确的获取和释放,即使是异常也会被正确释放
 """
 import json
+import csv
 
 # 打开文件
 with open("resources/text_info.txt", "r", encoding="utf-8") as f:
@@ -45,3 +46,28 @@ with open("resources/user_info.json", "w", encoding="utf-8") as f:
 with open("resources/user_info.json", "r", encoding="utf-8") as f:
     user_info = json.load(f)
     print(user_info)
+
+"""  
+csv 模块的使用
+"""
+
+with open("resources/user_info.csv", "w", encoding="utf-8", newline="") as f:
+    writer = csv.DictWriter(f, fieldnames=["name", "age", "gender", "hobby"])
+    writer.writeheader()  # 写入表头
+
+    # 单行写入
+    # writer.writerow({"name": "小美", "age": 18, "gender": "male", "hobby": 'reading,swimming,coding'})
+    # writer.writerow({"name": "小王", "age": 19, "gender": "female", "hobby": 'reading,swimming,coding'})
+    # writer.writerow({"name": "小张", "age": 20, "gender": "male", "hobby": 'reading,swimming,coding'})
+
+    # 多行写入
+    writer.writerows([
+        {"name": "小王", "age": 19, "gender": "female", "hobby": 'reading,swimming,coding'},
+        {"name": "小张", "age": 20, "gender": "male", "hobby": 'reading,swimming,coding'}
+    ])
+
+# 读取
+with open("resources/user_info.csv", "r", encoding="utf-8") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        print("csv文件: ",row)
