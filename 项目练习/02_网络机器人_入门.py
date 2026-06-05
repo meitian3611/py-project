@@ -10,6 +10,7 @@ Xpath: 一种在 HTML/XML中导航和定位元素的查询语言,可以精准的
     *           匹配任何元素节点          //body/div/*
     @*          匹配元素的任何属性        //body/div/a/@*
     text()      获取文本内容             //div/p/text()
+    [contains(a,b)] 判断 a 中是否包含字符串 b         //div[contains(@class, "comp:poster-card")]
 """
 
 import requests
