@@ -7,13 +7,18 @@ MOVIES_LIST_FILE = "resources/movie_list.csv"
 TMDB_BASE_URL = "https://www.themoviedb.org/"
 TMDB_TOP_URL = "https://www.themoviedb.org/movie/top-rated"
 
+
 # 保存数据
 def save_all_movies(all_movies):
-    with open(MOVIES_LIST_FILE, "w", encoding="utf-8", newline="") as f:
+    if not all_movies:
+        print("没有数据可保存")
+        return
+    with open(MOVIES_LIST_FILE, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=all_movies[0].keys())
         writer.writeheader()  # 写入表头
         writer.writerows(all_movies)  # 写入数据
-        print("数据保存完成!")
+        print(f"成功保存 {len(all_movies)} 条电影数据")
+
 
 # 获取电影详情数据
 def get_movie_info(movie_info_url):
